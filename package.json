@@ -1,10 +1,10 @@
 {
-  "name": "@coreui/coreui-free-react-admin-template",
+  "name": "SAM",
   "version": "2.6.0",
-  "description": "CoreUI React Open Source Bootstrap 4 Admin Template",
-  "author": "Łukasz Holeczek",
+  "description": "Software Administrator Manager",
+  "author": "Harys Vizcaino",
   "homepage": "https://coreui.io",
-  "copyright": "Copyright 2017-2019 creativeLabs Łukasz Holeczek",
+  "copyright": "Copyright 2020-2021 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "private": true,
   "repository": {
@@ -48,7 +48,7 @@
     "eject": "react-scripts eject"
   },
   "bugs": {
-    "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
+    "url": "https://github.com/HarysVizcaino/sam-admin"
   },
   "eslintConfig": {
     "extends": "react-app"
