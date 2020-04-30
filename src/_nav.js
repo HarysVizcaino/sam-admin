@@ -25,15 +25,12 @@ export default {
     },
     {
       name: 'Servicios',
-      url: '/theme/typography',
       icon: 'icon-pencil',
     },{
       name: 'Proveedores',
-      url: '/theme/typography',
       icon: 'icon-pencil',
     },{
       name: 'Equipos',
-      url: '/theme/typography',
       icon: 'icon-pencil',
       children: [
           {
@@ -100,7 +97,7 @@ export default {
     },
     {
       name: 'Usuarios',
-      url: '/theme/typography',
+      url: '/users',
       icon: 'icon-pencil',
     },
     // {
