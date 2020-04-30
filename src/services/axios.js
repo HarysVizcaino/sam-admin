@@ -1,15 +1,14 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
-import Config from 'react-native-config';
-import AsyncStorage from '@react-native-community/async-storage';
-import { AUTH_TOKEN } from 'constants';
+
+export const AUTH_TOKEN = 'AUTH_TOKEN';
 
 const instance = axios.create({
-  baseURL: Config.API_URL,
+  baseURL: 'http://localhost:3000',
 });
 
 export const getUsersCredentials = async () => {
-  const token = await AsyncStorage.getItem(AUTH_TOKEN);
+  const token = await localStorage.getItem(AUTH_TOKEN);
   return token;
 };
 

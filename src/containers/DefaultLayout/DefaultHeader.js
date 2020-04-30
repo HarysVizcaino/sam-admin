@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Logout } from '../../storage/modules/user.module';
+import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -14,6 +16,12 @@ const propTypes = {
 const defaultProps = {};
 
 class DefaultHeader extends Component {
+
+  onLogout(e) {
+    e.preventDefault();
+    this.props.signOut();
+    this.props.history.push('/login');
+  }
   render() {
 
     // eslint-disable-next-line
@@ -66,7 +74,7 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
               <DropdownItem divider />
               <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-              <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem onClick={e => this.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
@@ -80,4 +88,15 @@ class DefaultHeader extends Component {
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
-export default DefaultHeader;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(Logout()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultHeader);

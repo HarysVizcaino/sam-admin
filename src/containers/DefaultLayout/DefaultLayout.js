@@ -28,7 +28,7 @@ class DefaultLayout extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
-  signOut(e) {
+  signOut = (e) => {
     e.preventDefault()
     this.props.history.push('/login')
   }
@@ -38,7 +38,7 @@ class DefaultLayout extends Component {
       <div className="app">
         <AppHeader fixed>
           <Suspense  fallback={this.loading()}>
-            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+            <DefaultHeader onLogout={e=>this.signOut(e)} {...this.props}/>
           </Suspense>
         </AppHeader>
         <div className="app-body">
