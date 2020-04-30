@@ -15,7 +15,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { signIn, signIngErrorMessage,jwtToken } = this.props;
 
     if(jwtToken) {

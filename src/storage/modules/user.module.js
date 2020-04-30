@@ -5,6 +5,7 @@ import {
   USER_SIGNINGIN,
   LOGOUT,
   SET_USER,
+  SET_USERS,
   SIGNING_ERROR,
   CLEAR_SIGNING_ERROR,
   SET_JWT_TOKEN,
@@ -15,6 +16,7 @@ const userService = new UserService();
 const initialState = {
   demo: 10,
   user: {},
+  users: [],
   jwtToken: '',
   signIngErrorMessage: '',
 }
@@ -32,6 +34,8 @@ export default (state = initialState, action) => {
       return { ...state, signIngErrorMessage: '' };
     case SET_USER:
       return { ...state, user: action.payload };  
+    case SET_USERS:
+      return { ...state, users: action.payload }  
     case SET_JWT_TOKEN:
       return { ...state, jwtToken: action.payload};
     case LOGOUT: 
@@ -50,6 +54,7 @@ export const demoAction = () => ({
 export const signinError = (payload) => ({ type: SIGNING_ERROR, payload });
 
 export const setUser = (payload) => ({ type: SET_USER, payload });
+export const setUsers = (payload) => ({ type: SET_USERS, payload});
 export const setJWT = (payload) => ({ type: SET_JWT_TOKEN, payload });
 export const Logout = () => ({ type: LOGOUT });
 
@@ -57,14 +62,21 @@ export const Logout = () => ({ type: LOGOUT });
 export const clearSignIngErrorMessage = () => ({ type: CLEAR_SIGNING_ERROR });
 
 export const userSignIn = (email, password) => async (dispatch) => {
-  console.log({ email, password });
   try {
     const serviceResponse = await userService.SignIn(email, password);
     const {jwt, user} = serviceResponse.data;
     dispatch(setUser(user));
     dispatch(setJWT(jwt));
   } catch (error) {
-    console.log('module', error.message);
     dispatch(signinError('Error iniciando sesion'));
+  }
+}
+
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    const users = await userService.getAll();
+    dispatch(setUsers(users));
+  } catch (error) {
+    console.log(error);
   }
 }

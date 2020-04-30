@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+
+import { getAllUsers } from '../../storage/modules/user.module';
 
 import usersData from './UsersData'
 
@@ -9,29 +12,28 @@ function UserRow(props) {
   const userLink = `/users/${user.id}`
 
   const getBadge = (status) => {
-    return status === 'Active' ? 'success' :
-      status === 'Inactive' ? 'secondary' :
-        status === 'Pending' ? 'warning' :
-          status === 'Banned' ? 'danger' :
-            'primary'
+    return status ? 'success' : 'secondary';
   }
 
   return (
-    <tr key={user.id.toString()}>
+    <tr>
       <th scope="row"><Link to={userLink}>{user.id}</Link></th>
-      <td><Link to={userLink}>{user.name}</Link></td>
-      <td>{user.registered}</td>
-      <td>{user.role}</td>
-      <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status}</Badge></Link></td>
+      <td><Link to={userLink}>{user.username}</Link></td>
+      <td>{user.cellphone}</td>
+      <td>admin</td>
+      <td><Link to={userLink}><Badge color={getBadge(user.isActive)}>{user.isActive ? 'Activo': 'Inactivo'}</Badge></Link></td>
     </tr>
   )
 }
 
 class Users extends Component {
 
-  render() {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
 
-    const userList = usersData.filter((user) => user.id < 10)
+  render() {
+    const { users } = this.props;
 
     return (
       <div className="animated fadeIn">
@@ -47,13 +49,13 @@ class Users extends Component {
                     <tr>
                       <th scope="col">id</th>
                       <th scope="col">name</th>
-                      <th scope="col">registered</th>
+                      <th scope="col">Phone</th>
                       <th scope="col">role</th>
                       <th scope="col">status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {userList.map((user, index) =>
+                    {users.map((user, index) =>
                       <UserRow key={index} user={user}/>
                     )}
                   </tbody>
@@ -67,4 +69,16 @@ class Users extends Component {
   }
 }
 
-export default Users;
+const mapStateToProps = (state) => {
+  const { usersModule } = state;
+  const { users } = usersModule;
+  return { users }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: () => dispatch(getAllUsers()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

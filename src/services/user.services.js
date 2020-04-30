@@ -7,7 +7,6 @@ export class UserService {
   }
 
   async SignIn(email, password) {
-    console.log('service', { email, password });
     try {
       // const config = {
       //   headers: {
@@ -16,10 +15,17 @@ export class UserService {
       // };
       const payload = qr.stringify({ email, password });
       const response = await axiosInstance.post(`${this.url}/users/signin`, payload);
-      console.log(response);
       return response.data;
     } catch (err) {
-      console.log(err)
+      throw new Error(err);
+    }
+  }
+
+  async getAll() {
+    try {
+      const response = await axiosInstance.get(`${this.url}/users/`);
+      return response.data;
+    } catch (err) {
       throw new Error(err);
     }
   }

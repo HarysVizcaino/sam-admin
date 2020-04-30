@@ -1,14 +1,21 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
+import { getStoredState } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 
-export const AUTH_TOKEN = 'AUTH_TOKEN';
+export const AUTH_TOKEN = 'jwtToken';
 
 const instance = axios.create({
   baseURL: 'http://localhost:3000',
 });
 
 export const getUsersCredentials = async () => {
-  const token = await localStorage.getItem(AUTH_TOKEN);
+  console.log('runningget');
+
+  // const localStorage = window.localStorage;
+  const userModule = JSON.parse(localStorage.getItem('persist:root')).usersModule;
+  const token = JSON.parse(userModule).jwtToken;
+  console.log('usermodule', token);
   return token;
 };
 
@@ -18,7 +25,7 @@ instance.interceptors.request.use(
       const token = await getUsersCredentials() || undefined;
       config.headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        ...token ? { Authorization: token } : { token: 'Himanigal' },
+        ...token ? { Authorization: `Bearer ${token}` } : { token: 'Himanigal' },
         ...config.headers,
       };
     }
