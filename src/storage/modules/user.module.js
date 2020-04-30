@@ -17,3 +17,8 @@ export default (state = initialState, action) => {
       return state;
   }
 }
+
+export const demoAction = () => ({
+  type: DEMO_ACTION,
+  payload: 20,
+});

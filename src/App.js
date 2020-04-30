@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import store, { persistor } from './storage';
 // import { renderRoutes } from 'react-router-config';
 import './App.scss';
 
@@ -19,6 +21,8 @@ class App extends Component {
 
   render() {
     return (
+      <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <HashRouter>
           <React.Suspense fallback={loading()}>
             <Switch>
@@ -30,6 +34,8 @@ class App extends Component {
             </Switch>
           </React.Suspense>
       </HashRouter>
+      </PersistGate>
+      </Provider>
     );
   }
 }
