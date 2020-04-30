@@ -1,15 +1,15 @@
 {
-  "name": "SAM",
+  "name": "sam",
   "version": "2.6.0",
   "description": "Software Administrator Manager",
   "author": "Harys Vizcaino",
   "homepage": "https://coreui.io",
-  "copyright": "Copyright 2020-2021 creativeLabs Łukasz Holeczek",
+  "copyright": "Copyright 2020-2021 harysLab",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
+    "url": "https://github.com/HarysVizcaino/sam-admin"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.12",
@@ -20,6 +20,7 @@
     "chart.js": "^2.8.0",
     "classnames": "^2.2.6",
     "core-js": "^3.1.4",
+    "dotenv": "^8.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "flag-icon-css": "^3.3.0",
