@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage'
 
 import usersModule from './modules/user.module';
-
+import workshopModule from './modules/workshop.module';
 
 const middleware = [
   thunk,
@@ -23,6 +23,7 @@ const createStoreWithMiddleware = composeWithDevTools(applyMiddleware(...middlew
 // this is what they call rootReducer
 const reducer = combineReducers({
   usersModule,
+  workshopModule,
 });
 
 

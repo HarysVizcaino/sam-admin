@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import {
   Button,
@@ -17,6 +18,7 @@ import {
 
 
 import usersData from './UsersData'
+import { getAllWorkshops } from '../../storage/modules/workshop.module';
 
 const formInicialValues = {
    username: '', 
@@ -34,8 +36,17 @@ const formInicialValues = {
    }
 
 class UserAdd extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+    }
+  }
 
-
+  async componentDidMount() {
+    const { fetchWorkShops } = this.props;
+    await fetchWorkShops();
+  }
   createUser(user) {
     console.log('CreateUser', user);
   }
@@ -280,4 +291,17 @@ class UserAdd extends Component {
   }
 }
 
-export default UserAdd;
+
+const mapStateToProps = (state) => {
+  const { usersModule } = state;
+  const { users } = usersModule;
+  return { users }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchWorkShops: () => dispatch(getAllWorkshops()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserAdd);

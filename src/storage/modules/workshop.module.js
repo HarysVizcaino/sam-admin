@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
 export const updateWorkShopList =  (payload) => ({ type: UPDATE_WORKSHOPS_LIST, payload});
 
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllWorkshops = () => async (dispatch) => {
   try {
     const workshops = await workshopService.getAll();
     dispatch(updateWorkShopList(workshops));
