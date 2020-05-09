@@ -54,8 +54,10 @@ class UserAdd extends Component {
   render() {
 
     const user = usersData.find( user => user.id.toString() === this.props.match.params.id)
-
-    const userDetails = user ? Object.entries(user) : [['id', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
+    const { workshopsList } = this.props;
+    console.log('ENRENDER', workshopsList);
+    // const { workshopList } = workshopModule;
+    // console.log({ workshopList });
 
     return (
       <div className="animated fadeIn">
@@ -200,9 +202,8 @@ class UserAdd extends Component {
                       onChange={handleChange}
                       values={values.workshopId}
                       >
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
+                      {workshopsList && workshopsList.map((item, key) => (<option key={key} value={item.id}>{item.name}</option> ))}
+                  
                       </Input>
                     </Col>
                   </FormGroup>
@@ -293,9 +294,11 @@ class UserAdd extends Component {
 
 
 const mapStateToProps = (state) => {
-  const { usersModule } = state;
-  const { users } = usersModule;
-  return { users }
+ const { workshopModule} = state;
+ const { workshopsList } = workshopModule;
+return {
+  workshopsList
+};
 }
 
 const mapDispatchToProps = (dispatch) => {
