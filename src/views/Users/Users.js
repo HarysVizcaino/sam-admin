@@ -5,8 +5,6 @@ import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
 import { getAllUsers } from '../../storage/modules/user.module';
 
-import usersData from './UsersData'
-
 function UserRow(props) {
   const user = props.user
   const userLink = `/users/${user.id}`

@@ -30,18 +30,13 @@ import usersData from './UsersData'
 class User extends Component {
 
   render() {
-
-    const user = usersData.find( user => user.id.toString() === this.props.match.params.id)
-
-    const userDetails = user ? Object.entries(user) : [['id', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
-
     return (
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" md="8">
             <Card>
               <CardHeader>
-                <strong>Basic Form</strong> Elements
+                <strong>Editar usuario</strong> Harys Vizcaino
               </CardHeader>
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
@@ -152,7 +147,7 @@ class User extends Component {
                   </FormGroup>
                   <FormGroup row>
                     <Col md="3">
-                      <Label>Radios</Label>
+                      <Label>Estado</Label>
                     </Col>
                     <Col md="9">
                       <FormGroup check className="radio">

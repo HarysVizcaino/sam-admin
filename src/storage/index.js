@@ -7,7 +7,9 @@ import storage from 'redux-persist/lib/storage'
 import usersModule from './modules/user.module';
 
 
-const middleware = [thunk];
+const middleware = [
+  thunk,
+];
 
 const persistConfig = {
   key: 'root',
@@ -40,11 +42,8 @@ store = createStore(persistedReducer, undefined, ehnancer);
 
 persistor = persistStore(store);
 
-// eslint-disable-next-line no-undef
-// if (__DEV__) {
-//   store = configureStore();
-//   persistor = persistStore(store);
-// }
+store = configureStore();
+
 
 export default store;
 export {

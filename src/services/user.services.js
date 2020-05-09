@@ -29,4 +29,13 @@ export class UserService {
       throw new Error(err);
     }
   }
+
+  async getuserById(id) {
+    try {
+      const response = await axiosInstance.get(`${this.url}/users/${id}`);
+      return response.data;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }

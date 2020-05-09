@@ -6,3 +6,4 @@ export const SET_USER = 'SET_USER';
 export const SET_JWT_TOKEN = 'SET_JWT_TOKEN';
 export const LOGOUT = 'LOGOUT';
 export const SET_USERS = 'SET_USERS';
+export const UPDATE_WORKSHOPS_LIST = 'UPDATE_WORKSHOPS_LIST';

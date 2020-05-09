@@ -97,8 +97,19 @@ export default {
     },
     {
       name: 'Usuarios',
-      url: '/users',
       icon: 'icon-pencil',
+      children: [
+        {
+          name: 'lista',
+          url: '/users/list',
+          icon: 'icon-puzzle',
+        },
+        {
+          name: 'agregar',
+          url: '/users/add',
+          icon: 'icon-puzzle',
+        },
+      ]
     },
     // {
     //   title: true,
