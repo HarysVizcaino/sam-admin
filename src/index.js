@@ -1,3 +1,6 @@
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
+
+
 import 'react-app-polyfill/ie9'; // For IE 9-11 support
 import 'react-app-polyfill/stable';
 // import 'react-app-polyfill/ie11'; // For IE 11 support

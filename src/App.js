@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReduxToastr from 'react-redux-toastr'
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
@@ -35,6 +36,16 @@ class App extends Component {
           </React.Suspense>
       </HashRouter>
       </PersistGate>
+      <ReduxToastr
+      timeOut={4000}
+      newestOnTop={false}
+      preventDuplicates
+      position="bottom-right"
+      getState={(state) => state.toastr} // This is the default
+      transitionIn="fadeIn"
+      transitionOut="fadeOut"
+      progressBar
+      closeOnToastrClick/>
       </Provider>
     );
   }

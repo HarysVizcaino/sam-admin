@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {toastr} from 'react-redux-toastr'
+
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import {
@@ -75,11 +77,12 @@ class UserAdd extends Component {
     const { fetchWorkShops } = this.props;
     await fetchWorkShops();
   }
-  
+
   async createUser(user) {
     const { addnewUser } = this.props;
     this.setState({ isLoading: true })
     await addnewUser(user)
+    toastr.success('usuario Agregado', 'usuario agregado exitosamente')
     this.setState({ isLoading: false })
   }
 

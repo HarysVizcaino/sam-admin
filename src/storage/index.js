@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import {reducer as toastrReducer} from 'react-redux-toastr'
+
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -24,6 +26,7 @@ const createStoreWithMiddleware = composeWithDevTools(applyMiddleware(...middlew
 const reducer = combineReducers({
   usersModule,
   workshopModule,
+  toastr: toastrReducer,
 });
 
 
