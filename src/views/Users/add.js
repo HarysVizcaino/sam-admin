@@ -14,6 +14,7 @@ import {
   Input,
   Label,
   Row,
+  Spinner
 } from 'reactstrap';
 
 
@@ -76,14 +77,16 @@ class UserAdd extends Component {
   }
   async createUser(user) {
     const { addnewUser } = this.props;
-    console.log('CreateUser', user);
+    this.setState({ isLoading: true })
     await addnewUser(user)
+    this.setState({ isLoading: false })
   }
 
   render() {
 
     const user = usersData.find( user => user.id.toString() === this.props.match.params.id)
     const { workshopsList } = this.props;
+    const { isLoading } = this.state;
     console.log('ENRENDER', workshopsList);
     // const { workshopList } = workshopModule;
     // console.log({ workshopList });
@@ -300,8 +303,17 @@ class UserAdd extends Component {
                   </FormGroup>
                   <Col>
                   <Row>
-                  <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+                    {
+                      isLoading ? (
+                        <Spinner animation="border" variant="success" />
+                      ):(
+                      <div>
+                          <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+                      </div>
+                      )
+                    }
+                
                   </Row>
                   </Col>
                 </Form>
