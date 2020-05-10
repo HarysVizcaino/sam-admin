@@ -80,3 +80,14 @@ export const getAllUsers = () => async (dispatch) => {
     console.log(error);
   }
 }
+
+export const createUser = (user) => async (dispatch) => {
+  try {
+    const users = await userService.createUser(user);
+    console.log('DONECREATE', user);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+

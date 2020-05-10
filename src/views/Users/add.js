@@ -19,6 +19,9 @@ import {
 
 import usersData from './UsersData'
 import { getAllWorkshops } from '../../storage/modules/workshop.module';
+import { createUser } from '../../storage/modules/user.module';
+
+
 
 const formInicialValues = {
    username: '', 
@@ -35,6 +38,30 @@ const formInicialValues = {
    status: 0,
    }
 
+  //  ADMIN,
+  //  SUPERVISOR,
+  //  TECHNICIAN,
+  //  CUSTOMER,
+
+   const usersGroup = [
+     {
+       id: 0,
+       name: 'Admin'
+     },
+     {
+       id: 1,
+       name: 'Supervisor'
+     },
+     {
+       id: 2,
+       name: 'tecnico'
+     },
+     {
+       id: 3,
+       name: 'customer'
+     }
+   ]
+
 class UserAdd extends Component {
   constructor(props) {
     super(props);
@@ -47,8 +74,10 @@ class UserAdd extends Component {
     const { fetchWorkShops } = this.props;
     await fetchWorkShops();
   }
-  createUser(user) {
+  async createUser(user) {
+    const { addnewUser } = this.props;
     console.log('CreateUser', user);
+    await addnewUser(user)
   }
 
   render() {
@@ -203,7 +232,6 @@ class UserAdd extends Component {
                       values={values.workshopId}
                       >
                       {workshopsList && workshopsList.map((item, key) => (<option key={key} value={item.id}>{item.name}</option> ))}
-                  
                       </Input>
                     </Col>
                   </FormGroup>
@@ -219,9 +247,7 @@ class UserAdd extends Component {
                       onChange={handleChange}
                       value={values.groupId}
                       >
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
+                      {usersGroup && usersGroup.map((item, key) => (<option key={key} value={item.id}>{item.name}</option> ))}
                       </Input>
                     </Col>
                   </FormGroup>
@@ -304,6 +330,7 @@ return {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchWorkShops: () => dispatch(getAllWorkshops()),
+    addnewUser: (user) => dispatch(createUser(user)),
   }
 }
 
