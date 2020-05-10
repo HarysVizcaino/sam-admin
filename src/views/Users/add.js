@@ -75,6 +75,7 @@ class UserAdd extends Component {
     const { fetchWorkShops } = this.props;
     await fetchWorkShops();
   }
+  
   async createUser(user) {
     const { addnewUser } = this.props;
     this.setState({ isLoading: true })
